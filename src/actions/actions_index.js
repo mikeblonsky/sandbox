@@ -10,13 +10,20 @@ export function fetchUsers(options) {
     }
     
     const request = axios.get(`https://randomuser.me/api/?results=${config.number}&gender=${config.gender}&nat=${config.nat}`).then(request => request.data.results);
-    console.log("request", request);
     // if (callback) {
     //     console.log("JEST CALLBACK ACTION");
     // }
 
     return {
         type: constans.actionType.FETCH_USERS,
+        payload: request
+    }
+}
+
+export function fetchPosts() {
+    const request = axios.get("https://jsonplaceholder.typicode.com/posts").then(request => request.data);
+    return {
+        type: constans.actionType.FETCH_POSTS,
         payload: request
     }
 }

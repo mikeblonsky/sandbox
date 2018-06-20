@@ -4,6 +4,7 @@ import React, { Component } from "react";
 export default class App extends Component {
 	componentWillMount() {
 		this.props.fetchUsers({"number": 10, gender: "female", nat: "ES"});
+		this.props.fetchPosts();
 	}
 	render() {
 		console.log("APP RENDER111111111", this.props);
