@@ -5,7 +5,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import promise from "redux-promise";
 
-import App from './components/app';
+import App1 from './container/container';
 import reducers from './reducers/reducers';
 
 const store = createStore(reducers, compose(
@@ -15,5 +15,5 @@ const store = createStore(reducers, compose(
 
 
 ReactDOM.render(<Provider store={store}>
-  <App />
+  <App1 />
 </Provider>, document.querySelector('.page'));
