@@ -5,9 +5,12 @@ export default class App extends Component {
 	componentWillMount() {
 		this.props.fetchUsers({"number": 10, gender: "female", nat: "ES"});
 		this.props.fetchPosts();
+		this.props.fetchComments();
+	}
+	componentWillReceiveProps(nextProps) {
+		console.log("componentWillReceiveProps", nextProps, nextProps.user && nextProps.user);
 	}
 	render() {
-		console.log("APP RENDER111111111", this.props);
 		return (
 			<div className="main-app-container">
 

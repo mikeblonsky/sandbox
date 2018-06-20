@@ -13,7 +13,6 @@ export function fetchUsers(options) {
     // if (callback) {
     //     console.log("JEST CALLBACK ACTION");
     // }
-
     return {
         type: constans.actionType.FETCH_USERS,
         payload: request
@@ -24,6 +23,14 @@ export function fetchPosts() {
     const request = axios.get("https://jsonplaceholder.typicode.com/posts").then(request => request.data);
     return {
         type: constans.actionType.FETCH_POSTS,
+        payload: request
+    }
+}
+
+export function fetchComments() {
+    const request = axios.get("https://jsonplaceholder.typicode.com/comments").then(request => request.data);
+    return {
+        type: constans.actionType.FETCH_COMMENTS,
         payload: request
     }
 }
