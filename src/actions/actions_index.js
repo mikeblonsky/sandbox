@@ -34,3 +34,11 @@ export function fetchComments() {
         payload: request
     }
 }
+
+export function fetchPhotos() {
+    const request = axios.get("https://jsonplaceholder.typicode.com/photos").then(request => request.data);
+    return {
+        type: constans.actionType.FETCH_PHOTOS,
+        payload: request
+    }
+}
