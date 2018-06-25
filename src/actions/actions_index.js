@@ -1,6 +1,14 @@
 import constans from "../utils/constans";
 import axios from "axios";
 
+// https://github.com/toddmotto/public-apis
+
+// https://pokeapi.co/
+// https://reqres.in/
+// https://jsonplaceholder.typicode.com/
+// https://randomuser.me/
+
+
 export function fetchUsers(options) {
     const config = {
         number: 20, // res
@@ -42,3 +50,28 @@ export function fetchPhotos() {
         payload: request
     }
 }
+
+export function fetchPersons() {
+    const request = axios.get("https://swapi.co/api/people/").then(request => request.data.results);
+    return {
+        type: constans.actionType.FETCH_PERSONS,
+        payload: request
+    }
+}
+
+export function fetchReqres() {
+    const request = axios.get("https://reqres.in/api/users/").then(request =>  request.data.data);
+    return {
+        type: constans.actionType.FETCH_REQRES,
+        payload: request
+    }
+}
+
+export function fetchPokemon() {
+    const request = axios.get("https://pokeapi.co/api/v2/pokemon/?limit=50&offset=50").then(request =>  request.data.results);
+    return {
+        type: constans.actionType.FETCH_POKEMON,
+        payload: request
+    }
+}
+

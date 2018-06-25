@@ -8,7 +8,10 @@ export default class App extends Component {
 			"users": [],
 			"posts": [],
 			"comments": [],
-			"photos": []
+			"photos": [],
+			"persons": [],
+			"reqres": [],
+			"pokemon": []
 		}
 	}
 	componentWillMount() {
@@ -16,14 +19,20 @@ export default class App extends Component {
 		this.props.fetchPosts();
 		this.props.fetchComments();
 		this.props.fetchPhotos();
+		this.props.fetchPersons();
+		this.props.fetchReqres();
+		this.props.fetchPokemon();
 	}
 	componentWillReceiveProps(nextProps) {
-		console.log("componentWillReceiveProps", nextProps, nextProps.user && nextProps.user);
+		console.log("componentWillReceiveProps", nextProps);
 		this.setState({
 			"users": nextProps.users,
 			"posts": nextProps.posts,
 			"comments": nextProps.comments,
-			"photos": nextProps.photos
+			"photos": nextProps.photos,
+			"persons": nextProps.persons,
+			"reqres": nextProps.reqres,
+			"pokemon": nextProps.pokemon
 		});
 	}
 	render() {
@@ -32,11 +41,31 @@ export default class App extends Component {
 			users,
 			posts,
 			comments,
-			photos
+			photos,
+			persons,
+			reqres,
+			pokemon
 		} = this.state;
-
 		return (
 			<div className="main__container">
+				<div className="column">
+					<h2>POKEMON</h2>
+					<ol>
+						{ pokemon && pokemon.map((pokemonItem, index) => <li key={index}><a href={ pokemonItem.url }>{ pokemonItem.name }</a></li>) }
+					</ol>
+				</div>
+				<div className="column">
+					<h2>REQRES</h2>
+					<ol>
+						{ reqres && reqres.map((item, index) => <li key={index}>item name: { item.first_name }<br /><img src={item.avatar} /></li>) }
+					</ol>
+				</div>
+				<div className="column">
+					<h2>PERSONS</h2>
+					<ol>
+						{ persons && persons.map((person, index) => <li key={index}>person name: { person.name }</li>) }
+					</ol>
+				</div>
 				<div className="column">
 					<h2>USERS</h2>
 					<ol>

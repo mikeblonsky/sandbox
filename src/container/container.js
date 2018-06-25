@@ -1,7 +1,15 @@
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { fetchUsers, fetchPosts, fetchComments, fetchPhotos } from "../actions/actions_index";
+import { 
+    fetchUsers,
+    fetchPosts,
+    fetchComments,
+    fetchPhotos,
+    fetchPersons,
+    fetchReqres,
+    fetchPokemon
+} from "../actions/actions_index";
 import App from "../components/app";
 
 let App1 = (props) => <App {...props}/>;
@@ -11,7 +19,10 @@ function mapStateToProps(state){
         users: state.users,
         posts: state.posts,
         comments: state.comments,
-        photos: state.photos
+        photos: state.photos,
+        persons: state.persons,
+        reqres: state.reqres,
+        pokemon: state.pokemon
     };
 }
 function mapDispatchToProps(dispatch) {
@@ -19,7 +30,10 @@ function mapDispatchToProps(dispatch) {
         fetchUsers,
         fetchPosts,
         fetchComments,
-        fetchPhotos
+        fetchPhotos,
+        fetchPersons,
+        fetchReqres,
+        fetchPokemon
 	}, dispatch);
 }
 
