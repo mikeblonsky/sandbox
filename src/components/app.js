@@ -15,7 +15,7 @@ export default class App extends Component {
 		}
 	}
 	componentWillMount() {
-		this.props.fetchUsers({"number": 10, gender: "female", nat: "ES"});
+		this.props.fetchUsers({"number": 20, gender: "female", nat: "ES"});
 		this.props.fetchPosts();
 		this.props.fetchComments();
 		this.props.fetchPhotos();
