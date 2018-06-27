@@ -11,8 +11,8 @@ import axios from "axios";
 
 export function fetchUsers(options) {
     const config = {
-        number: 20, // res
-        gender: "male", //?gender=male
+        number: 2, // res
+        gender: "female", //?gender=male
         nat: "br", //?nat=gb AU, BR, CA, CH, DE, DK, ES, FI, FR, GB, IE, IR, NL, NZ, TR, US
         ...options
     }
@@ -37,6 +37,7 @@ export function fetchPosts() {
 
 export function fetchComments() {
     const request = axios.get("https://jsonplaceholder.typicode.com/comments").then(request => request.data);
+    console.log("1111", axios.get("https://jsonplaceholder.typicode.com/comments").then(r => r))
     return {
         type: constans.actionType.FETCH_COMMENTS,
         payload: request

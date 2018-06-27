@@ -56,7 +56,7 @@ export default class App extends Component {
 				</div>
 				<div className="column">
 					<h2>REQRES</h2>
-					<ol>
+					<ol className="reqresList">
 						{ reqres && reqres.map((item, index) => <li key={index}>item name: { item.first_name }<br /><img src={item.avatar} /></li>) }
 					</ol>
 				</div>
@@ -68,13 +68,13 @@ export default class App extends Component {
 				</div>
 				<div className="column">
 					<h2>USERS</h2>
-					<ol>
+					<ol className="usersList">
 						{ users && users.map((user, index) => <li key={index}>user email: { user.email }</li>) }
 					</ol>
 				</div>
 				<div className="column">
 					<h2>POSTS</h2>
-					<ol>
+					<ol className="postsList">
 						{ posts && posts.slice(0, 50).map((post, index) => <li key={index}>post title: { post.title }</li>) }
 					</ol>
 				</div>
