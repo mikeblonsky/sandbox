@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import { reducer as formReducer } from "redux-form";
 import { fetchUsers } from "./users";
 import { fetchPosts } from "./posts";
 import { fetchComments } from "./comments";
@@ -8,6 +9,7 @@ import { fetchReqres } from "./reqres";
 import { fetchPokemon } from "./pokemon";
 
 const rootReducer = combineReducers({
+  form: formReducer,
   users: fetchUsers,
   posts: fetchPosts,
   comments: fetchComments,

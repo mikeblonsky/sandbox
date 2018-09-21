@@ -1,9 +1,9 @@
 import React, { Component } from "react";
+import { Field } from "redux-form";
 
-export default class App extends Component {
+class App extends Component {
 	constructor() {
 		super();
-
 		this.state = {
 			"users": [],
 			"posts": [],
@@ -24,7 +24,6 @@ export default class App extends Component {
 		this.props.fetchPokemon();
 	}
 	componentWillReceiveProps(nextProps) {
-		console.log("componentWillReceiveProps", nextProps);
 		this.setState({
 			"users": nextProps.users,
 			"posts": nextProps.posts,
@@ -48,6 +47,10 @@ export default class App extends Component {
 		} = this.state;
 		return (
 			<div className="main__container">
+				<div className="registerForm">
+					<Field name="name" component="input" />
+					<Field name="surename" component="input" />
+				</div>
 				<div className="column">
 					<h2>POKEMON</h2>
 					<ol>
@@ -95,3 +98,4 @@ export default class App extends Component {
 	}
 }
 
+export default App;
