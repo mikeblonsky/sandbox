@@ -10,22 +10,13 @@ import {
     fetchPersons,
     fetchReqres,
     fetchPokemon
-} from "../actions/actions_index";
-import App from "../components/app";
+} from "../../actions/actions_index";
+import Api from "../../components/api";
 
-const FORM_NAME = "REGISTER_FORM";
-const selector = formValueSelector(FORM_NAME);
-let App1 = (props) => <App {...props} />;
+let ApiFree = (props) => <Api {...props} />;
 
 function mapStateToProps(state){
-    const values = selector(
-        state,
-        "name",
-        "surename",
-        "pokemon"
-    );
     return {
-        values,
         users: state.users,
         posts: state.posts,
         comments: state.comments,
@@ -47,13 +38,4 @@ function mapDispatchToProps(dispatch) {
 	}, dispatch);
 }
 
-// export default connect(mapStateToProps, mapDispatchToProps)(App1);
-
-export default reduxForm({
-    form: FORM_NAME
-})(
-    connect(
-      mapStateToProps,
-      mapDispatchToProps
-    )(App1)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ApiFree);

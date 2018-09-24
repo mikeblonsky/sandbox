@@ -1,12 +1,14 @@
 import { combineReducers } from "redux";
 import { reducer as formReducer } from "redux-form";
-import { fetchUsers } from "./users";
-import { fetchPosts } from "./posts";
-import { fetchComments } from "./comments";
-import { fetchPhotos } from "./photos";
-import { fetchPersons } from "./persons";
-import { fetchReqres } from "./reqres";
-import { fetchPokemon } from "./pokemon";
+import { 
+  fetchPokemon,
+  fetchUsers,
+  fetchPosts,
+  fetchComments,
+  fetchPhotos,
+  fetchPersons,
+  fetchReqres
+} from "./api";
 
 const rootReducer = combineReducers({
   form: formReducer,

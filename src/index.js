@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from "./root"
-import App1 from './container/container';
+import MainApp from './container/MainApp';
 
 ReactDOM.render(
   <Root>
-    <App1 />
+    <MainApp />
   </Root>, 
 document.querySelector('.page'));

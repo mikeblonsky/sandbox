@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Field } from "redux-form";
 
-class App extends Component {
+class Api extends Component {
 	constructor() {
 		super();
 		this.state = {
@@ -34,8 +34,8 @@ class App extends Component {
 			"pokemon": nextProps.pokemon
 		});
 	}
-	render() {
 
+	render() {
 		const {
 			users,
 			posts,
@@ -47,14 +47,12 @@ class App extends Component {
 		} = this.state;
 		return (
 			<div className="main__container">
-				<div className="registerForm">
-					<Field name="name" component="input" />
-					<Field name="surename" component="input" />
-				</div>
 				<div className="column">
 					<h2>POKEMON</h2>
 					<ol>
-						{ pokemon && pokemon.map((pokemonItem, index) => <li key={index}><a href={ pokemonItem.url }>{ pokemonItem.name }</a></li>) }
+						{ pokemon && pokemon.map((pokemonItem, index) => 
+							<li key={index}><a href={ pokemonItem.url }>{ pokemonItem.name }</a></li>
+						).slice(0, 20)}
 					</ol>
 				</div>
 				<div className="column">
@@ -98,4 +96,4 @@ class App extends Component {
 	}
 }
 
-export default App;
+export default Api;
