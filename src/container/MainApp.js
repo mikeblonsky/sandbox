@@ -5,7 +5,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 // Containers
 import ApiFree from "./ApiFree/apiFree";
-import RegisterForm from "./Register/registerForm"
+import RegisterForm from "./Register/registerForm";
+import Home from "./Home/Home";
 
 
 class MainApp extends Component {
@@ -16,7 +17,8 @@ class MainApp extends Component {
         return (
             <Router>
                 <div className="mainTemplate">
-                    <Route path="/" exact component={ApiFree} />
+                    <Route path="/" exact component={Home} />
+                    <Route path="/api" exact component={ApiFree} />
                     <Route path="/register" exact component={RegisterForm} />
                 </div>
             </Router>            
