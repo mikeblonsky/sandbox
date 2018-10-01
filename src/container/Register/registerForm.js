@@ -11,8 +11,14 @@ const selector = formValueSelector(FORM_NAME);
 function mapStateToProps(state) {
     const values = selector(
         state,
-        "sureName",
-        "name"
+        "userName",
+        "userSureName",
+        "userNick",
+        "userEmail",
+        "userEmailConfirm",
+        "userPassword",
+        "userPasswordConfirm",
+        "userCity"
     );
     return { values };
 }
@@ -21,7 +27,34 @@ export default reduxForm({
     form: FORM_NAME,
     validate,
     initialValues: {
-        "sureName": "",
-        "name": ""
+        "userName": "",
+        "userSureName": "",
+        "userNick": "",
+        "userEmail": "",
+        "userEmailConfirm": "",
+        "userPassword": "",
+        "userPasswordConfirm": "",
+        "userCity": ""
     }
 })(connect(mapStateToProps, null)(RegisterForm));
+
+// RegisterForm = reduxForm({
+//     form: FORM_NAME
+// })(RegisterForm);
+
+// RegisterForm = connect(state => {
+//     const values = selector(
+//         state,
+//         "userName",
+//         "userSureName",
+//         "userNick",
+//         "userEmail",
+//         "userEmailConfirm",
+//         "userPassword",
+//         "userPasswordConfirm",
+//         "userCity"
+//     );
+//     return {
+//         values
+//     }
+// });

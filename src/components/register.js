@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import { Field } from "redux-form";
 import { 
     RenderInputText,
-    RenderSelect 
+    RenderSelect,
+    MultiselectField,
 } from  "../utils/forms";
+
 
 class Register extends Component {
 	constructor() {
@@ -18,24 +20,58 @@ class Register extends Component {
             values, 
             handleSubmit
         } = this.props;
-        console.log("VALUES: ", this.props.values, this.props.values.sureName);
 		return (
 			<div className="register">
                 <form onSubmit={handleSubmit(this.showResults)}>
                     <div>
                         <Field 
-                            name="name" 
-                            label="Your name:"
+                            name="multi"
+                            label="Wybierz ulubione góry"
+                            component={MultiselectField}
+                        />
+                        <Field 
+                            name="userName" 
+                            label="Podaj imie"
                             component={RenderInputText} 
                         />
                         <Field 
-                            name="sureName" 
-                            label="Your surename:"
+                            name="userSureName" 
+                            label="Podaj nazwisko"
                             component={RenderInputText} 
                         />
                         <Field 
-                            name="email" 
-                            label="Your email:"
+                            name="userNick" 
+                            label="Nick"
+                            component={RenderInputText} 
+                        />
+                        <Field 
+                            name="userEmail" 
+                            label="Podaj email"
+                            component={RenderInputText} 
+                        />
+                        <Field 
+                            name="userEmailConfirm" 
+                            label="Powtórz email"
+                            component={RenderInputText} 
+                        />
+                        <Field 
+                            name="userPassword" 
+                            label="Podaj hasło"
+                            component={RenderInputText} 
+                        />
+                        <Field 
+                            name="userPasswordConfirm" 
+                            label="Powtórz hasło"
+                            component={RenderInputText} 
+                        />
+                        <Field 
+                            name="userCity" 
+                            label="Miasto"
+                            component={RenderInputText} 
+                        />
+                        <Field 
+                            name="select" 
+                            label="Your select:"
                             component={RenderSelect} 
                         >
                             <option value="1">1111</option>
