@@ -8,10 +8,18 @@ import {
 
 class Register extends Component {
 	constructor() {
-		super();
+        super();
+        this.state = {
+            "ageRange": 0
+        }
     }
     showResults = (values) => {
         console.log(values);
+    }
+    handleRangeAge = (event) => {
+        this.setState({
+            "ageRange": Math.floor(event.target.value)
+        });
     }
 	render() {
 
@@ -24,6 +32,23 @@ class Register extends Component {
 		return (
 			<div className="register">
                 <form onSubmit={handleSubmit(this.showResults)}>
+                <br /><br /><br />
+
+                <label htmlFor="customRange1">Example range {this.state.ageRange}</label>
+                <input className="custom-range" id="customRange1" type="range" onChange={this.handleRangeAge} list="tickmarks" min="0" max="100" step="any" />
+
+                <div className="progress">
+                    <div 
+                        className="progress-bar progress-bar-animated progress-bar-striped bg-warning"
+                        role="progressbar"
+                        style={{"width": "75%"}}
+                        aria-valuenow="75"
+                        aria-valuemin="0"
+                        aria-valuemax="100">
+                        75%
+                    </div>
+                </div>
+                    
                     <Field 
                         name="multi"
                         label="Wybierz ulubione góry"
