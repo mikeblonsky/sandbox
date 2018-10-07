@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 // Containers
 import ApiFree from "./ApiFree/apiFree";
-import RegisterForm from "./Register/registerForm";
+import RegisterForm from "./Register/registerForm_container";
 import Home from "./Home/Home";
 
 class MainApp extends Component {

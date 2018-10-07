@@ -45,6 +45,7 @@ class Api extends Component {
 			reqres,
 			pokemon
 		} = this.state;
+		console.log(this.props);
 		return (
 			<div className="main__container">
 				<div className="column">

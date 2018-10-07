@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { reduxForm, formValueSelector } from "redux-form";
+import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { validate } from "../../utils/validations/form_register"
-import Register from "../../components/register"
+import { validate } from "../../utils/validations/form_register";
+import Register from "../../components/register";
+import { addUser } from "../../actions/register_action";
 
 const FORM_NAME = "REGISTER_FORM";
 const RegisterForm = props => <Register {...props} />;
@@ -23,6 +25,14 @@ function mapStateToProps(state) {
     return { values };
 }
 
+function mapDispatchToProps(dispatch) { 
+    return bindActionCreators({ 
+        addUser 
+    }, dispatch);
+}
+
+
+
 export default reduxForm({
     form: FORM_NAME,
     validate,
@@ -36,7 +46,7 @@ export default reduxForm({
         "userPasswordConfirm": "",
         "userCity": ""
     }
-})(connect(mapStateToProps, null)(RegisterForm));
+})(connect(mapStateToProps, mapDispatchToProps)(RegisterForm));
 
 // RegisterForm = reduxForm({
 //     form: FORM_NAME

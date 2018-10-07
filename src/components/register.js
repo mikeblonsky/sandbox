@@ -14,7 +14,8 @@ class Register extends Component {
         }
     }
     showResults = (values) => {
-        console.log(values);
+        console.log("showResults: ", values);
+        this.props.addUser(values);
     }
     handleRangeAge = (event) => {
         this.setState({
@@ -29,25 +30,34 @@ class Register extends Component {
             handleSubmit
         } = this.props;
 
-		return (
+        return (
 			<div className="register">
                 <form onSubmit={handleSubmit(this.showResults)}>
                 <br /><br /><br />
 
-                <label htmlFor="customRange1">Example range {this.state.ageRange}</label>
-                <input className="custom-range" id="customRange1" type="range" onChange={this.handleRangeAge} list="tickmarks" min="0" max="100" step="any" />
+                {/* <label htmlFor="customRange1">Example range {this.state.ageRange}</label>
+                <input 
+                    list="tickmarks" 
+                    className="custom-range" 
+                    id="customRange1" 
+                    type="range" 
+                    onChange={this.handleRangeAge}  
+                    min="0" 
+                    max="100" 
+                />
 
                 <div className="progress">
-                    <div 
+                    <div
                         className="progress-bar progress-bar-animated progress-bar-striped bg-warning"
                         role="progressbar"
                         style={{"width": "75%"}}
                         aria-valuenow="75"
                         aria-valuemin="0"
-                        aria-valuemax="100">
+                        aria-valuemax="100"
+                    >
                         75%
                     </div>
-                </div>
+                </div> */}
                     
                     <Field 
                         name="multi"
@@ -60,7 +70,7 @@ class Register extends Component {
                         component={RenderInputText} 
                     />
                 
-                    <Field 
+                    {/* <Field 
                         name="userSureName" 
                         label="Podaj nazwisko"
                         component={RenderInputText} 
@@ -119,7 +129,7 @@ class Register extends Component {
                         <option value="1">1111</option>
                         <option value="2">2222</option>
                         <option value="3">3333</option>
-                    </Field>
+                    </Field> */}
                     <button type="submit" className="btn btn-primary" disabled={submitting}>Zapisz</button>
                 </form>
             </div>

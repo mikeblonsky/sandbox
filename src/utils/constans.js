@@ -6,6 +6,7 @@ export default {
         FETCH_PHOTOS: "FETCH_PHOTOS",
         FETCH_PERSONS: "FETCH_PERSONS",
         FETCH_REQRES: "FETCH_REQRES",
-        FETCH_POKEMON: "FETCH_POKEMON"
+        FETCH_POKEMON: "FETCH_POKEMON",
+        ADD_USER: "ADD_USER",
     }
 }
