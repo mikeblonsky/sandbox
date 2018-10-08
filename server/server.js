@@ -85,7 +85,19 @@ app.put("/api/fetch_sports/:id", function(req, res) {
             });
     });
 })
-
+app.delete("/api/fetch_sports/:id", function(req, res) {
+    console.log("DELETEEEEEEEEEEEEE", req.params);
+    Sports.findOneAndRemove({ _id: req.params.id }).then(singleSport => {
+        console.log("FETCH SINGLE SPORT: ", singleSport);
+        res.send(singleSport);
+    }).catch(err => {
+        res
+            .status(204)
+            .send({
+                message: err.message
+            });
+    });
+})
 
 
 
