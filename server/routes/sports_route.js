@@ -3,17 +3,25 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const Sports = require("../model/sports_model");
 
+// GET     /api/sports/all 
+// POST    /api/sports/add 
+// GET     /api/sports/single/:id 
+// PUT     /api/sports/update/:id 
+// DELETE  /api/sports/delete/:id 
+
 router.get("/all", (req, res) => {
     Sports.find()
         .then(sport => {
            res.send(sport);
-        }).catch(err => {
+        })
+        .catch(err => {
             res.status(500).send({
             message: err.message
         });
     });
 })
 
+// podlaczyc dane z REQ
 router.post("/add", function(req, res) {
     new Sports({name: "moje name", sureName: "moje sureName"})
         .save()

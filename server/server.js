@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require("mongoose");
+const cors = require("cors");
 const Schema = mongoose.Schema;
 const bodyParser = require("body-parser");
 const app_config = require("./config/app_config");
@@ -16,25 +17,13 @@ mongoose.connect(app_config.mongoURI)
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(function(req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    next();
-});
 
+// USE CORS
+app.use(cors());
 
 // USE ROUTE
-app.use(`${app_config.url}/sports/`, sportsRoute);
-// sports/all GET
-// sports/add POST
-// sports/single/:id GET
-// sports/update/:id PUT
-// sports/delete/:id DELETE
-
 app.use(`${app_config.url}/cars/`, carsRoute);
-
+app.use(`${app_config.url}/sports/`, sportsRoute);
 
 
 
