@@ -26,32 +26,71 @@ const userSchema = new Schema({
     multi: Array,
     userName: String
 });
-const User = db.model('users', userSchema);
+const User = db.model('Users', userSchema, "users");
 
-const xxxSchema = new Schema({
+const SportsSchema = new Schema({
     name: String,
-    sureName: String
+    sureName: String,
+    xxx: String
 });
-const Xxx = db.model('xxx', xxxSchema);
+const Sports = db.model('Sports', SportsSchema, "sports");
 
-app.post("/api/addxxx", function(req, res) {
+app.post("/api/add_sports", function(req, res) {
     console.log("SERVER POST XXX");
-    new Xxx({name: "moje name", sureName: "moje sureName"})
+    new Sports({name: "moje name", sureName: "moje sureName"})
         .save()
         .then(xxx => done(null, xxx));
 });
 
-app.get("/api/fetchxxx", function(req, res) {
-    Xxx.find()
-        .then(xxx => {
-           console.log("NODE fetchUsers", xxx);
-           res.send(xxx);
+app.get("/api/fetch_sports", function(req, res) {
+    Sports.find()
+        .then(sport => {
+           console.log("NODE fetchUsers", sport);
+           res.send(sport);
         }).catch(err => {
             res.status(500).send({
             message: err.message
         });
     });
 })
+app.get("/api/fetch_sports/:id", function(req, res) {
+    Sports.findOne({_id: req.params.id})
+        .then(singleSport => {
+           console.log("FETCH SINGLE SPORT: ", singleSport);
+            res.send(singleSport);
+        }).catch(err => {
+            res
+                .status(500)
+                .send({
+                    message: err.message
+                });
+    });
+})
+app.put("/api/fetch_sports/:id", function(req, res) {
+    console.log("PUTTTTTTTTTTTTTTTTTT", req.params);
+    Sports.findOneAndUpdate(
+        { _id: req.params.id },
+        { $set: 
+            {...req.body}
+        }
+    )
+    .then(singleSport => {
+        console.log("FETCH SINGLE SPORT: ", singleSport);
+        res.send(singleSport);
+    }).catch(err => {
+        res
+            .status(500)
+            .send({
+                message: err.message
+            });
+    });
+})
+
+
+
+
+
+
 app.get("/api/fetchUsers", function(req, res) {
     console.log("Fetch all Users");
     User.find()
