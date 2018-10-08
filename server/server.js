@@ -5,9 +5,10 @@ const Schema = mongoose.Schema;
 const bodyParser = require("body-parser");
 const app_config = require("./config/app_config");
 
+//mongoose.Promise = global.Promise;
 mongoose.connect(app_config.mongoURI);
 const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+// db.on('error', console.log('MongoDB connection error:'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -26,23 +27,28 @@ const userSchema = new Schema({
     multi: Array,
     userName: String
 });
-const User = db.model('users', userSchema);
+const User = mongoose.model('users', userSchema, "users");
 
-const xxxSchema = new Schema({
+const sportsSchema = new Schema({
     name: String,
     sureName: String
 });
-const Xxx = db.model('xxx', xxxSchema);
+const Sport = mongoose.model('sport', sportsSchema, "sports");
 
-app.post("/api/addxxx", function(req, res) {
-    console.log("SERVER POST XXX");
-    new Xxx({name: "moje name", sureName: "moje sureName"})
-        .save()
-        .then(xxx => done(null, xxx));
+app.post("/api/add_sport", function(req, res) {
+    new Sport({
+        name: "moje name", 
+        sureName: "moje sureName"
+    })
+    .save()
+    .then(sportItem => {
+        console.log("SERVER POST sportItem", sportItem);
+        done(null, sportItem)
+    });
 });
 
-app.get("/api/fetchxxx", function(req, res) {
-    Xxx.find()
+app.get("/api/fetch_sports", function(req, res) {
+    Sport.find()
         .then(xxx => {
            console.log("NODE fetchUsers", xxx);
            res.send(xxx);
@@ -67,14 +73,23 @@ app.get("/api/fetchUsers", function(req, res) {
 app.post("/api/addUser", function(req, res) {
     console.log("SERVER POST ADD_USER", req.body);
     new User({
-        multi: req.body.multi, 
-        userName: req.body.userName
+        ...req.body
     })
     .save()
     .then(user => done(null, user));
 });
 
-
+// db
+//     .collection('users')
+//     .findOne({
+//         'username':username, 
+//         'password':password
+//     }, 
+//         function(err, docs){
+//         //do something
+//         //do something
+//         //do something
+//     });
 
 
 app.listen(3000);
