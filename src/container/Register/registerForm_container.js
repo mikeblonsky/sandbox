@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { validate } from "../../utils/validations/form_register";
 import Register from "../../components/register";
-import { addUser } from "../../actions/register_action";
+import { xxx } from "../../actions/actions_index";
 
 const FORM_NAME = "REGISTER_FORM";
 const RegisterForm = props => <Register {...props} />;
@@ -20,14 +20,15 @@ function mapStateToProps(state) {
         "userEmailConfirm",
         "userPassword",
         "userPasswordConfirm",
-        "userCity"
+        "userCity",
+        "sports"
     );
     return { values };
 }
 
 function mapDispatchToProps(dispatch) { 
     return bindActionCreators({ 
-        addUser 
+        xxx 
     }, dispatch);
 }
 

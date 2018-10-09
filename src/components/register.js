@@ -13,6 +13,9 @@ class Register extends Component {
             "ageRange": 0
         }
     }
+    componentWillMount() {
+        this.props.xxx();
+    }
     showResults = (values) => {
         console.log("showResults: ", values);
         this.props.addUser(values);
@@ -29,7 +32,7 @@ class Register extends Component {
             values, 
             handleSubmit
         } = this.props;
-
+        console.log("RENDER", this.props);
         return (
 			<div className="register">
                 <form onSubmit={handleSubmit(this.showResults)}>

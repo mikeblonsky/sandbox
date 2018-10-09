@@ -76,3 +76,14 @@ export function fetchPokemon() {
     }
 }
 
+export function xxx() {
+    console.log(22222222222222222222);
+    const request = axios.get("http://localhost:3000/api/sports/all").then(request => {
+        console.log("ACTION_FETCH_SPORTS", request.data);
+        return request.data
+    });
+    return {
+        type: constans.actionType.FETCH_SPORTS,
+        payload: request
+    }
+}
