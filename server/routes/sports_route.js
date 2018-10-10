@@ -23,7 +23,7 @@ router.get("/all", (req, res) => {
 
 // podlaczyc dane z REQ
 router.post("/add", function(req, res) {
-    new Sports({name: "moje name", sureName: "moje sureName"})
+    new Sports({name: req.body.name, sureName: req.body.sureName})
         .save()
         .then(xxx => done(null, xxx));
 });
@@ -40,6 +40,7 @@ router.get("/single/:id", function(req, res) {
 })
 
 router.put("/update/:id", function(req, res) {
+    console.log("PUTTTTTTT", req.body);
     Sports.findOneAndUpdate(
         { _id: req.params.id },
         { $set: 

@@ -8,6 +8,7 @@ export default {
         FETCH_REQRES: "FETCH_REQRES",
         FETCH_POKEMON: "FETCH_POKEMON",
         ADD_USER: "ADD_USER",
-        FETCH_SPORTS: "FETCH_SPORTS"
+        FETCH_SPORTS: "FETCH_SPORTS",
+        UPDATE_SPORT: "UPDATE_SPORT"
     }
 }

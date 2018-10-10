@@ -1,6 +1,6 @@
 import React from "react";
 
-class Home extends React.Component {
+class Login extends React.Component {
     constructor() {
         super();
     }
@@ -8,11 +8,11 @@ class Home extends React.Component {
         this.props.xxx();
     }
     render() {
-        console.log("HOME: ", this.props.sports);
+        console.log("LOGIN: ", this.props.sports);
         return (
-            <h1>HOME PAGE</h1>
+            <h1>LOGIN PAGE</h1>
         );
     }
 }
 
-export default Home;
+export default Login;

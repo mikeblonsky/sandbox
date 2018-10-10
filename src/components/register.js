@@ -17,12 +17,30 @@ class Register extends Component {
         this.props.xxx();
     }
     showResults = (values) => {
-        console.log("showResults: ", values);
         this.props.addUser(values);
     }
     handleRangeAge = (event) => {
         this.setState({
             "ageRange": Math.floor(event.target.value)
+        });
+    }
+    updateElement = (event, sport) => {
+        event.preventDefault();
+        const data = {
+            name: this.state.sportName,
+            sureName: this.state.sportSureName
+        };
+        this.props.updateSport(sport._id, data);
+    }
+    handleSport = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+    }
+    removeSport = (e, id) => {
+        e.preventDefault();
+        this.props.removeSport(id, () => {
+            this.props.xxx();
         });
     }
 	render() {
@@ -32,7 +50,7 @@ class Register extends Component {
             values, 
             handleSubmit
         } = this.props;
-        console.log("RENDER", this.props);
+        console.log("111", this.props);
         return (
 			<div className="register">
                 <form onSubmit={handleSubmit(this.showResults)}>
@@ -135,6 +153,22 @@ class Register extends Component {
                     </Field> */}
                     <button type="submit" className="btn btn-primary" disabled={submitting}>Zapisz</button>
                 </form>
+
+                <div>
+                    {this.props.sports && this.props.sports.map(sport => {
+                        return <div key={sport._id}>
+                            <span>name</span><br />
+                            <input type="text" name="sportName" onChange={this.handleSport} defaultValue={sport.name} /><br />
+                            <span>surName</span><br />
+                            <input type="text" name="sportSureName" onChange={this.handleSport} defaultValue={sport.sureName} />
+                            <br />
+                            <button onClick={(e) => this.updateElement(e, sport)}>Update</button>
+                            <button onClick={(e) => this.removeSport(e, sport._id)}>Remove</button>
+                            <hr />
+                        </div>
+                    })}
+                </div>
+
             </div>
 		);
 	}

@@ -77,13 +77,40 @@ export function fetchPokemon() {
 }
 
 export function xxx() {
-    console.log(22222222222222222222);
     const request = axios.get("http://localhost:3000/api/sports/all").then(request => {
-        console.log("ACTION_FETCH_SPORTS", request.data);
         return request.data
     });
+    
     return {
         type: constans.actionType.FETCH_SPORTS,
+        payload: request
+    }
+}
+export function updateSport(id, data) {
+    const request = axios.put(`http://localhost:3000/api/sports/update/${id}`, data);
+    
+    request.then(request => {
+        return request.data
+    });
+
+    return {
+        type: constans.actionType.UPDATE_SPORT,
+        payload: request
+    }
+}
+
+export function removeSport(id, callback) {
+    const request = axios.delete(`http://localhost:3000/api/sports/delete/${id}`);
+    
+    request.then(request => {
+        if (callback) {
+            callback(request.data);
+        }
+        return request.data
+    });
+
+    return {
+        type: constans.actionType.UPDATE_SPORT,
         payload: request
     }
 }

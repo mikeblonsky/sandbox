@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import Home from "../../components/Home";
-import { xxx } from "../../actions/actions_index";
+import Home from "../components/Home";
+import { xxx } from "../actions/actions_index";
 
 const HomeContainer = props => <Home {...props} />;
 

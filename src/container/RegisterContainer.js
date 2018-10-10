@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { reduxForm, formValueSelector } from "redux-form";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { validate } from "../../utils/validations/form_register";
-import Register from "../../components/register";
-import { xxx } from "../../actions/actions_index";
+import { validate } from "../utils/validations/form_register";
+import Register from "../components/Register";
+import { xxx, updateSport, removeSport } from "../actions/actions_index";
 
 const FORM_NAME = "REGISTER_FORM";
-const RegisterForm = props => <Register {...props} />;
+const RegisterContainer = props => <Register {...props} />;
 const selector = formValueSelector(FORM_NAME);
 
 function mapStateToProps(state) {
@@ -21,14 +21,18 @@ function mapStateToProps(state) {
         "userPassword",
         "userPasswordConfirm",
         "userCity",
-        "sports"
     );
-    return { values };
+    return { 
+        values,
+        sports: state.sports 
+    };
 }
 
 function mapDispatchToProps(dispatch) { 
     return bindActionCreators({ 
-        xxx 
+        xxx,
+        updateSport,
+        removeSport
     }, dispatch);
 }
 
@@ -47,13 +51,13 @@ export default reduxForm({
         "userPasswordConfirm": "",
         "userCity": ""
     }
-})(connect(mapStateToProps, mapDispatchToProps)(RegisterForm));
+})(connect(mapStateToProps, mapDispatchToProps)(RegisterContainer));
 
-// RegisterForm = reduxForm({
+// RegisterContainer = reduxForm({
 //     form: FORM_NAME
-// })(RegisterForm);
+// })(RegisterContainer);
 
-// RegisterForm = connect(state => {
+// RegisterContainer = connect(state => {
 //     const values = selector(
 //         state,
 //         "userName",

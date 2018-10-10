@@ -9,7 +9,7 @@ import {
   fetchPersons,
   fetchReqres,
   xxx
-} from "./api";
+} from "./reducer_api";
 // import {
 //   xxx
 // } from "./register_reducer";
