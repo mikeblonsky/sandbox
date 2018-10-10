@@ -19,7 +19,7 @@ class Register extends Component {
     }
     showResults = (values) => {
         console.log(values);
-        this.props.addUser(values);
+        this.props.addSport(values);
     }
     handleRangeAge = (event) => {
         this.setState({

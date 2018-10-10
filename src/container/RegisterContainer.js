@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { validate } from "../utils/validations/form_register";
 import Register from "../components/Register";
-import { xxx, updateSport, removeSport } from "../actions/actions_index";
+import { xxx, updateSport, removeSport, addSport } from "../actions/actions_index";
 
 const FORM_NAME = "REGISTER_FORM";
 const RegisterContainer = props => <Register {...props} />;
@@ -32,7 +32,8 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({ 
         xxx,
         updateSport,
-        removeSport
+        removeSport,
+        addSport
     }, dispatch);
 }
 

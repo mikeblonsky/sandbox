@@ -77,7 +77,16 @@ export function fetchPokemon() {
 }
 
 export function addSport(data) {
-    const request = axios.post("http://localhost:3000/api/sports/add", data).then(request => {
+    console.log("ACTION DATA", data, data.productImage[0]);
+    const newDate = {
+        ...data,
+        productImage: {
+            ...data.productImage[0],
+            path: data.productImage[0].name
+        }
+    }
+    console.log("NEWWWWWW", newDate);
+    const request = axios.post("http://localhost:3000/api/sports/add", newDate).then(request => {
         console.log("ADD ACTION", request.data);
         return request.data
     });
