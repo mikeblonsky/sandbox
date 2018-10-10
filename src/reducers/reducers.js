@@ -7,8 +7,12 @@ import {
   fetchComments,
   fetchPhotos,
   fetchPersons,
-  fetchReqres
+  fetchReqres,
+  xxx
 } from "./api";
+// import {
+//   xxx
+// } from "./register_reducer";
 
 const rootReducer = combineReducers({
   form: formReducer,
@@ -18,7 +22,8 @@ const rootReducer = combineReducers({
   photos: fetchPhotos,
   persons: fetchPersons,
   reqres: fetchReqres,
-  pokemon: fetchPokemon
+  pokemon: fetchPokemon,
+  sports: xxx
 });
 
 export default rootReducer;

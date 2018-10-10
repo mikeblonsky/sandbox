@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 // Containers
 import ApiFree from "./ApiFree/apiFree";
-import RegisterForm from "./Register/registerForm_container";
-import Home from "./Home/Home";
+import RegisterFormContainer from "./Register/registerForm_container";
+import HomeContainer from "./Home/Home_container.js";
 
 class MainApp extends Component {
     constructor() {
@@ -14,11 +14,11 @@ class MainApp extends Component {
         return (
             <Router>
                 <div className="mainTemplate">
-                    <Route path="/" exact component={Home} />
+                    <Route path="/" exact component={HomeContainer} />
                     <Route path="/api" exact component={ApiFree} />
-                    <Route path="/register" exact component={RegisterForm} />
+                    <Route path="/register" exact component={RegisterFormContainer} />
                 </div>
-            </Router>            
+            </Router>
         );
     }
 }
