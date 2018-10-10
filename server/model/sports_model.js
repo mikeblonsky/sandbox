@@ -18,6 +18,9 @@ var SportsSchema = new Schema({
         type: String,
         // required: true,
         trim: true
+    },
+    productImage: {
+        type: String
     }
 });
 

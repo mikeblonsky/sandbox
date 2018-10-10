@@ -3,6 +3,7 @@ import { Field } from "redux-form";
 import { 
     RenderInputText,
     RenderSelect,
+    RenderInputFile,
     MultiselectField,
 } from  "../utils/forms";
 
@@ -17,6 +18,7 @@ class Register extends Component {
         this.props.xxx();
     }
     showResults = (values) => {
+        console.log(values);
         this.props.addUser(values);
     }
     handleRangeAge = (event) => {
@@ -53,9 +55,16 @@ class Register extends Component {
         console.log("111", this.props);
         return (
 			<div className="register">
-                <form onSubmit={handleSubmit(this.showResults)}>
-                <br /><br /><br />
 
+                <form onSubmit={handleSubmit(this.showResults)} encType="multipart/form-data">
+                <br /><br /><br />
+                
+                    <Field 
+                        name="productImage"
+                        type="file"
+                        label="Wybierz Plik"
+                        component={RenderInputFile} 
+                    />
                 {/* <label htmlFor="customRange1">Example range {this.state.ageRange}</label>
                 <input 
                     list="tickmarks" 

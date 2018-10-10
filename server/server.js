@@ -17,6 +17,7 @@ mongoose.connect(app_config.mongoURI)
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use("/uploads", express.static("uploads"));
 
 // USE CORS
 app.use(cors());

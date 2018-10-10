@@ -76,6 +76,18 @@ export function fetchPokemon() {
     }
 }
 
+export function addSport(data) {
+    const request = axios.post("http://localhost:3000/api/sports/add", data).then(request => {
+        console.log("ADD ACTION", request.data);
+        return request.data
+    });
+    
+    return {
+        type: constans.actionType.FETCH_SPORTS,
+        payload: request
+    }
+}
+
 export function xxx() {
     const request = axios.get("http://localhost:3000/api/sports/all").then(request => {
         return request.data

@@ -1,7 +1,36 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require("mongoose");
+const multer = require("multer");
+const storage = multer.diskStorage({
+    destination: function(req, file, callback) {
+        callback(null, "./uploads/");
+    },
+    filename: function(req, file, callback) {
+        // .toISOString().replace(/:/g, '-')"
+        callback(null, new Date().toISOString().replace(/:/g, '-') + file.originalname);
+    }
+});
+const fileFilter = (req, file, callback) => {
+    // reject a file
+    if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+        callback(null, true);
+        // new Error("message")
+    } else {
+        callback(null, false);
+    }
+}
+const upload = multer({
+    storage: storage, 
+    limits: {
+        fileSize: 1024 * 1024 * 5
+    },
+    fileFilter: fileFilter
+});
+
+
 const Sports = require("../model/sports_model");
+
 
 // GET     /api/sports/all 
 // POST    /api/sports/add 
@@ -21,11 +50,15 @@ router.get("/all", (req, res) => {
     });
 })
 
-// podlaczyc dane z REQ
-router.post("/add", function(req, res) {
-    new Sports({name: req.body.name, sureName: req.body.sureName})
-        .save()
-        .then(xxx => done(null, xxx));
+router.post("/add", upload.single("productImage"), (req, res) => {
+    console.log("FILE: ", req.file);
+    new Sports({
+        name: req.body.name, 
+        sureName: req.body.sureName, 
+        productImage: req.file.path
+    })
+    .save()
+    .then(xxx => done(null, xxx));
 });
 
 router.get("/single/:id", function(req, res) {
@@ -40,7 +73,6 @@ router.get("/single/:id", function(req, res) {
 })
 
 router.put("/update/:id", function(req, res) {
-    console.log("PUTTTTTTT", req.body);
     Sports.findOneAndUpdate(
         { _id: req.params.id },
         { $set: 

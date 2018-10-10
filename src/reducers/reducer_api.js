@@ -64,7 +64,6 @@ export function fetchUsers(state=null, action) {
 }
 
 export function xxx(state=null, action) {
-    console.log("REDUCER", action.payload);
       switch(action.type) {
           case constans.actionType.FETCH_SPORTS:
               return action.payload

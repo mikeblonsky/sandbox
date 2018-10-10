@@ -13,7 +13,13 @@ export const RenderInputText = (field) => {
     return <div className="form-group row">
         <label htmlFor={"input_" + field.input.name} className="col-sm-4 col-form-label">{field.label}</label>
         <div className="col-sm-8">
-            <input {...field.input} type={field.type ? field.type : "text"} className="form-control form-control-sm" id={"input_" + field.input.name} name={field.input.name} />
+            <input 
+                {...field.input} 
+                type={field.type ? field.type : "text"} 
+                className="form-control form-control-sm" 
+                id={"input_" + field.input.name} 
+                name={field.input.name} 
+            />
             {field.meta.error && field.meta.touched && (
                 <small className="form-text text-red">{field.meta.error}</small>
             )}
@@ -24,6 +30,16 @@ export const RenderInputText = (field) => {
 export const RenderSelect = ({input, label, children}) => (
     <select {...input}>{children}</select>
 )
+
+export const RenderInputFile = ({input, label, children}) => {
+    console.log("FILE: ", input);
+    delete input.value
+    return <input 
+        {...input}
+        name={input.name}
+        type="file"
+    />
+}
 
 export const MultiselectField = ({meta, input, label}) => {
     return <div className="form-group">
