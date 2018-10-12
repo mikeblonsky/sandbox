@@ -2,20 +2,18 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require("mongoose");
 const multer = require("multer");
+const multipart = require("connect-multiparty");
 const storage = multer.diskStorage({
     destination: function(req, file, callback) {
         callback(null, "./uploads/");
     },
     filename: function(req, file, callback) {
-        // .toISOString().replace(/:/g, '-')"
         callback(null, new Date().toISOString().replace(/:/g, '-') + file.originalname);
     }
 });
 const fileFilter = (req, file, callback) => {
-    // reject a file
     if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
         callback(null, true);
-        // new Error("message")
     } else {
         callback(null, false);
     }
@@ -50,15 +48,20 @@ router.get("/all", (req, res) => {
     });
 })
 
-router.post("/add", upload.single("productImage"), (req, res) => {
-    console.log("FILE: ", req.file);
+router.post("/add", upload.single("productImage"), (req, res, done) => {
+    console.log("FILE: ", req.body ,"222222222", req.file);
+    const xxx = JSON.stringify(req.body.data);
+    console.log("xxx", xxx);
     new Sports({
-        name: req.body.name, 
-        sureName: req.body.sureName, 
+        name: "req.body.name", 
+        sureName: "req.body.sureName", 
         productImage: req.file.path
     })
     .save()
-    .then(xxx => done(null, xxx));
+    .then(xxx => {
+        console.log("XXX", xxx);
+        done(null, xxx)
+    });
 });
 
 router.get("/single/:id", function(req, res) {

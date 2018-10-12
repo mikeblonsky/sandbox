@@ -14,13 +14,17 @@ const carsRoute = require("./routes/cars_route");
 mongoose.connect(app_config.mongoURI)
     .then(() => console.log("MongoDB Connected!!!"))
     .catch(err => console.log("MongoDB Connection Error !!!!"));
+    
+// USE CORS
+app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+// app.use(express.urlencoded());
+// app.use(express.json());
+
 app.use("/uploads", express.static("uploads"));
 
-// USE CORS
-app.use(cors());
 
 // USE ROUTE
 app.use(`${app_config.url}/cars/`, carsRoute);
