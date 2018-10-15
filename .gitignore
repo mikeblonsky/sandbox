@@ -5,6 +5,8 @@ bundle.js
 npm-debug.log
 .DS_Store
 start.txt
+package.json
+package-lock.json
 
 # IntelliJ
 *.iml

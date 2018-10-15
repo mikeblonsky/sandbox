@@ -16,7 +16,7 @@ mongoose.connect(app_config.mongoURI)
     .then(() => console.log("MongoDB Connected!!!"))
     .catch(err => console.log("MongoDB Connection Error !!!!"));
     
-// // USE CORS
+// USE CORS
 app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: true }));
