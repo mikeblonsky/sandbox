@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Dropzone from 'react-dropzone';
 import { Field } from "redux-form";
 import { 
     RenderInputText,
@@ -11,15 +12,26 @@ class Register extends Component {
 	constructor() {
         super();
         this.state = {
-            "ageRange": 0
+            "ageRange": 0,
+            "file": null
         }
     }
     componentWillMount() {
         this.props.xxx();
     }
-    showResults = (values) => {
-        console.log(values);
-        this.props.addSport(values);
+    sendFormData = (values) => {
+        const formData = new FormData();
+        const dataFromForm = {
+            "userName": values.userName,
+            "sureName": values.multi
+        }
+        formData.append('productImage', this.state.file);
+        formData.append("data", JSON.stringify(dataFromForm));
+        for (var key of formData.entries()) {
+			console.log("XXXXXXXXXXXX", key[0] + ', ' + key[1])
+		}
+        this.props.addSport(formData);
+        //https://stackoverflow.com/questions/40773641/how-to-send-data-along-with-file-in-http-post-angularjs-expressjs
     }
     handleRangeAge = (event) => {
         this.setState({
@@ -45,6 +57,14 @@ class Register extends Component {
             this.props.xxx();
         });
     }
+    onChangeFile = (event) => {
+        console.log("FILES: ", event.target.files[0]);
+        this.setState({
+            "file": event.target.files[0]
+        }, () => {
+            console.log("STATE", this.state.file);
+        })
+    }
 	render() {
 
         const {
@@ -52,19 +72,23 @@ class Register extends Component {
             values, 
             handleSubmit
         } = this.props;
-        console.log("111", this.props);
+        console.log("111", this.props.sports);
         return (
 			<div className="register">
 
-                <form onSubmit={handleSubmit(this.showResults)} encType="multipart/form-data">
+                <form onSubmit={handleSubmit(this.sendFormData)}>
                 <br /><br /><br />
-                
-                    <Field 
-                        name="productImage"
-                        type="file"
-                        label="Wybierz Plik"
-                        component={RenderInputFile} 
-                    />
+            {/* <Dropzone
+                onDrop={this.onDrop}
+            >
+                <p>Drop some files here ...</p>
+            </Dropzone> */}
+                <input type="file" onChange={this.onChangeFile} />
+                {/* <Field 
+                    name="productImage"
+                    label="Wybierz Plik"
+                    component={RenderInputFile} 
+                /> */}
                 {/* <label htmlFor="customRange1">Example range {this.state.ageRange}</label>
                 <input 
                     list="tickmarks" 

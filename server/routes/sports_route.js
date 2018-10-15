@@ -60,7 +60,7 @@ router.post("/add", upload.single("productImage"), (req, res, done) => {
     .save()
     .then(xxx => {
         console.log("XXX", xxx);
-        done(null, xxx)
+        return done(null, xxx);
     });
 });
 

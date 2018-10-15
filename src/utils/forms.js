@@ -31,15 +31,38 @@ export const RenderSelect = ({input, label, children}) => (
     <select {...input}>{children}</select>
 )
 
-export const RenderInputFile = ({input, label, children}) => {
-    console.log("FILE: ", input);
-    delete input.value
+export const RenderInputFile = (field) => {
+    console.log("FILE: ", field.input);
+    // delete field.input.value
     return <input 
-        {...input}
-        name={input.name}
+        {...field.input}
+        name={field.input.name}
         type="file"
+        // onChange={adaptFileEventToValue(field.input.onChange)}
+        // onBlur={adaptFileEventToValue(field.input.onBlur)}
     />
 }
+
+// const adaptFileEventToValue = delegate => e => delegate(e.target.files[0])
+
+// export const RenderInputFile FileInput = ({
+//     input: {
+//         value: omitValue,
+//         onChange,
+//         onBlur,
+//         ...inputProps,
+//     },
+//     meta: omitMeta,
+//     ...props,
+// }) =>
+// <input
+//   onChange={adaptFileEventToValue(onChange)}
+//   onBlur={adaptFileEventToValue(onBlur)}
+//   type="file"
+//   {...inputProps}
+//   {...props}
+// />
+
 
 export const MultiselectField = ({meta, input, label}) => {
     return <div className="form-group">
@@ -53,10 +76,4 @@ export const MultiselectField = ({meta, input, label}) => {
             onBlur={() => input.onBlur()}
         />
     </div>;
-}
-
-export const File = ({meta, input, label}) => {
-    return <div>
-
-    </div>
 }

@@ -77,25 +77,19 @@ export function fetchPokemon() {
 }
 
 export function addSport(data) {
-    console.log("ACTION DATA", data, data.productImage[0]);
-    const newDate = {
-        ...data,
-        productImage: {
-            ...data.productImage[0],
-            path: data.productImage[0].name
-        }
-    }
-    console.log("NEWWWWWW", newDate);
-    const request = axios.post("http://localhost:3000/api/sports/add", newDate).then(request => {
-        console.log("ADD ACTION", request.data);
+    // {
+    //     headers: {'content-type': 'application/json; charset=utf-8'}
+    // }
+    const request = axios.post("http://localhost:3000/api/sports/add", data).then(request => {
         return request.data
     });
-    
     return {
         type: constans.actionType.FETCH_SPORTS,
         payload: request
     }
 }
+
+
 
 export function xxx() {
     const request = axios.get("http://localhost:3000/api/sports/all").then(request => {
